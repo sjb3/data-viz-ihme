@@ -10,6 +10,7 @@ const DATA_FILE_URL =
 
 // Initialize application state using default control options.
 store.setState(controls.initialState);
+
 // Get a handle to the root element, in which we'll build the application.
 const appContainer = document.getElementById(ROOT_ELEMENT_ID);
 
@@ -26,6 +27,7 @@ appContainer.appendChild(vizContainer);
 (async function main() {
   try {
     // const parsed = await util.loadCSVData(DATA_FILE_URL);
+    console.log(store.setYear(2000));
 
     d3.csv(DATA_FILE_URL, data => {
       var valueLabelWidth = 40;
@@ -37,7 +39,7 @@ appContainer.appendChild(vizContainer);
       var maxBarWidth = 800;
 
       var barLabel = d => {
-        return d["location"] + "(" + d["sex"] + ")";
+        return d["location"] + "(" + d["sex"] + ", " + d["year"] + ")";
       };
 
       var barValue = d => {
